@@ -1,0 +1,28 @@
+name: enhanced_mobs
+version: '${project.version}'
+main: cn.yanshiqwq.enhanced_mobs.Enhanced_mobs
+api-version: 1.19
+enhance:
+  creeper:
+    health:
+strength:
+zombie:
+  mainhand:
+    material:
+      wood: 2
+      stone: 3
+      iron: 5
+      diamond: 1
+    type:
+      none: 80
+      shovel: 5
+      sword: 5
+      axe: 1
+      pickaxe: 2
+  offhand:
+    none: 10
+    block: 5
+    shield: 5
+    totem: 2
+    tnt: 1
+    lava-bucket: 1
