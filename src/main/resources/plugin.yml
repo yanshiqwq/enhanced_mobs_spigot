@@ -1,28 +1,19 @@
 name: enhanced_mobs
 version: '${project.version}'
-main: cn.yanshiqwq.enhanced_mobs.Enhanced_mobs
+main: cn.yanshiqwq.enhanced_mobs.Main
 api-version: 1.19
-enhance:
-  creeper:
-    health:
-strength:
-zombie:
-  mainhand:
-    material:
-      wood: 2
-      stone: 3
-      iron: 5
-      diamond: 1
-    type:
-      none: 80
-      shovel: 5
-      sword: 5
-      axe: 1
-      pickaxe: 2
-  offhand:
-    none: 10
-    block: 5
-    shield: 5
-    totem: 2
-    tnt: 1
-    lava-bucket: 1
+commands:
+  test:
+    description: This is a demo command.
+    usage: /<command> [test function]
+    permission: <plugin name>.test
+    permission-message: You don't have <permission>
+permissions:
+  test.*:
+    children:
+      test.strength: true
+      test.enhance: true
+  test.strength:
+    default: op
+  test.enhance:
+    default: op
