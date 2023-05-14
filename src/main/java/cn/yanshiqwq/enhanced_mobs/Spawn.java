@@ -5,8 +5,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 
-import java.util.Random;
-
 import static cn.yanshiqwq.enhanced_mobs.Enhance.setEnhance;
 import static cn.yanshiqwq.enhanced_mobs.Strength.setStrength;
 
@@ -15,19 +13,29 @@ public class Spawn implements Listener {
     @EventHandler
     public void onMobSpawn(CreatureSpawnEvent event) {
         LivingEntity entity = event.getEntity();
-        if (entity.hasAI()) {
-            int noneWeight = 17;
-            int strengthWeight = 2;
-            int enhanceWeight = 1;
-            Random r = new Random();
-            int random = r.nextInt(noneWeight + strengthWeight + enhanceWeight - 1);
-            if (random >= noneWeight - 1) {
-                if (random < noneWeight + strengthWeight - 1) {
-                    setStrength(entity);
-                } else {
-                    setEnhance(entity);
-                }
-            }
+
+        // 限制自然生成 and 刷怪蛋
+        CreatureSpawnEvent.SpawnReason reason = event.getSpawnReason();
+        if (reason != CreatureSpawnEvent.SpawnReason.NATURAL
+                && reason != CreatureSpawnEvent.SpawnReason.SPAWNER_EGG) {
+            return;
+        }
+
+        // 自然变异概率
+        double chance = 0.075;
+
+        // 普通增强概率
+        // double enhanceChance = 1 - strengthChance;
+        double strengthChance = 0.7;
+
+        if (Math.random() > chance) {
+            return;
+        }
+
+        if (Math.random() <= strengthChance) {
+            setStrength(entity);
+        } else {
+            setEnhance(entity);
         }
     }
 }

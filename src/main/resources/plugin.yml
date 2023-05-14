@@ -3,17 +3,16 @@ version: '${project.version}'
 main: cn.yanshiqwq.enhanced_mobs.Main
 api-version: 1.19
 commands:
-  test:
-    description: This is a demo command.
+  spawnmob:
     usage: /<command> [test function]
-    permission: <plugin name>.test
+    permission: <plugin name>.spawnmob
+    permission-message: You don't have <permission>
+  randomitem:
+    usage: /<command> [test function]
+    permission: <plugin name>.randomitem
     permission-message: You don't have <permission>
 permissions:
-  test.*:
-    children:
-      test.strength: true
-      test.enhance: true
-  test.strength:
+  spawnmob:
     default: op
-  test.enhance:
+  randomitem:
     default: op
